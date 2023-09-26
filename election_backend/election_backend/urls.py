@@ -11,15 +11,15 @@ def bad(request):
 
 
 urlpatterns = [
+    path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 urlpatterns += i18n_patterns(
     path("bad/", bad),
     path('', include('djvue.urls')),
-    path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("user/", include("user.urls", namespace="user")),
-    path("api/v1/", include("user.urls", namespace="user_api")),
+    path("api/v1/", include("user.api.urls", namespace="user_api")),
 )
 
 if settings.DEBUG:
