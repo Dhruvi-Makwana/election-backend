@@ -2,6 +2,7 @@ from datetime import date
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from user.constants import PASSWORD_ERROR_MESSAGE, BIRTH_DATE_ERROR
+from django.contrib.auth.hashers import make_password
 User = get_user_model()
 
 
@@ -24,6 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         if not password == confirm_password:
             raise serializers.ValidationError(PASSWORD_ERROR_MESSAGE)
         attrs.pop("confirm_password", None)
+        attrs["password"] = make_password(password)
         return attrs
 
 
