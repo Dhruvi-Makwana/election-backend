@@ -152,6 +152,8 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -168,6 +170,7 @@ ROOT_URLCONF = "election_backend.urls"
 WSGI_APPLICATION = "election_backend.wsgi.application"
 
 INSTALLED_APPS = [
+    "corsheaders",
     "user.apps.UsersConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -253,3 +256,5 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_LIFETIME": timedelta(days=30),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=20),
 }
+
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
